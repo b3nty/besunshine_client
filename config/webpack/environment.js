@@ -1,14 +1,18 @@
 const { environment } = require('@rails/webpacker')
 const webpack = require('webpack')
 
-// Get the actual sass-loader config
-const sassLoader = environment.loaders.get('sass')
-const sassLoaderConfig = sassLoader.use.find(function(element) {
-  return element.loader == 'sass-loader'
+environment.loaders.prepend('sass', {
+    test: /\.(css|scss|sass)$/,
+    use: [{
+        loader: 'style-loader'
+    }, {
+        loader: 'css-loader'
+    }, {
+        loader: 'sass-loader',
+        options: {
+            includePaths: ['node_modules'],
+        }
+    }]
 })
-
-// Use Dart-implementation of Sass (default is node-sass)
-const options = sassLoaderConfig.options
-options.implementation = require('sass')
 
 module.exports = environment

@@ -1,18 +1,7 @@
 const { environment } = require('@rails/webpacker')
 const webpack = require('webpack')
 
-environment.loaders.prepend('sass', {
-    test: /\.(css|scss|sass)$/,
-    use: [{
-        loader: 'style-loader'
-    }, {
-        loader: 'css-loader'
-    }, {
-        loader: 'sass-loader',
-        options: {
-            includePaths: ['node_modules'],
-        }
-    }]
-})
+environment.loaders.get('sass').use
+   .find(item => item.loader === 'sass-loader').options.sassOptions.includePaths.push(...['node_modules'])
 
 module.exports = environment

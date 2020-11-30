@@ -14,13 +14,13 @@
     "jquery": "^3.5.1",
     "node-releases": "^1.1.67",
     "popper.js": "^1.16.1",
+    "sass-loader": "^10.1.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
     "node-sass": "^5.0.0",
     "sass": "^1.29.0",
-    "sass-loader": "^10.1.0",
     "webpack-dev-server": "^3.11.0"
   }
 }

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :dashboard do
+    collection do
+      get :conf
+    end
+  end
 
   root 'welcome#index'
 end

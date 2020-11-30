@@ -1,0 +1,42 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %a.navbar-brand{:href => "/"}
+        %i.fas.fa-ad.fa-2x
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+
+.container
+  .text-left
+    %h1 Liste de Clients
+    %br/
+    = link_to(new_admin_user_path) do
+      %button.btn.menu-button
+        Ajouter un Client
+    %br
+    %br
+    %table.table.table-striped
+      %tr
+        %td #
+        %td E-mail
+        %td.text-center Modifier
+        %td.text-center Désactiver/Activer
+      - @users.each do |nb|
+        %tr
+          %td
+            = nb.id
+          %td
+            = nb.email
+          %td.text-center
+            = link_to (edit_admin_user_path(nb.id)) do
+              %i.fas.fa-pen-square.fa-3x
+          %td.text-center
+            - if nb.activated == true
+              = link_to(methode_check_admin_user_path(nb.id)) do
+                .fas.fa-check.color-v.fa-3x
+            - else
+              = link_to(methode_check_admin_user_path(nb.id)) do
+                .fas.fa-user-times.color-r.fa-3x

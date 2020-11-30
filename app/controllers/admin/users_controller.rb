@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::AdminController
 
   def index
-    @users = User.all.sort_by{ |m| m.firstname.downcase }
+    @users = User.all.sort_by{ |m| m.email.downcase }
   end
 
   def new
@@ -48,7 +48,7 @@ class Admin::UsersController < Admin::AdminController
   private
 
   def params_user
-    params.require(:user).permit(:email, :lastname, :firstname, :password)
+    params.require(:user).permit(:email, :password)
   end
 
 end

@@ -1,0 +1,28 @@
+.text-left
+  = link_to "admin", admin_users_path
+
+.container
+  .text-center
+    %h1 Besunshine Client
+  .text-center
+    - if flash[:alert]
+      .alert.alert-danger{:role => "alert"}
+        = flash[:alert]
+    - if flash[:notice]
+      .alert.alert-info{:role => "alert"}
+        = flash[:notice]
+  .box
+    .box-header.text-center
+      %h3 Se connecter
+    .box-body
+      %br/
+      = simple_form_for(:user, url: user_session_path) do |f|
+        = f.label :email, "E-mail :"
+        = f.input :email, required: false, label: false
+        = f.label :password, "Mot de passe :"
+        = f.input :password, required: false, label: false
+        %br
+        = f.button :submit, :class => "btn btn-success", :value => "Se connecter", :href => "/account"
+      %br/
+      .link
+        = link_to "Mot de passe oublié?", new_password_path(:user), title: "Mot de passe oublié"

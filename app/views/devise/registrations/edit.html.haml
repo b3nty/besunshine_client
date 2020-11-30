@@ -1,0 +1,25 @@
+= render 'layouts/header'
+
+.container.devise-user
+  .text-left
+    %h1
+      Mes Informations
+    %br
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.button :submit, :value => "Mise à jour", class: "menu-button"
+        &nbsp;&nbsp;
+        ou
+        &nbsp;
+        = link_to "Retour", patients_path, class: "back"
+        %br
+        %br
+        = f.input :email, required: true, label: "Email :"
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %p
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+        = f.input :password, autocomplete: "off", label: "Nouveau mots de passe :", hint: "( Laisser vide si vous ne voulez pas changer )", required: false
+        = f.input :current_password, label: "Mots de passe actuel :", hint: "( Nous avons besoin de votre mot de passe actuel pour confirmer vos modifications )", required: true
+        = f.input :firstname, label: "Prénom :"
+        = f.input :lastname, label: "Nom :"

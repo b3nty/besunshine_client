@@ -1,6 +1,9 @@
 {
   "name": "besunshine_client",
   "private": true,
+  "scripts": {
+  "start": "node index.js"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",

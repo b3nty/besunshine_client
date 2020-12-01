@@ -1,5 +1,3 @@
-= render 'layouts/header'
-
 .container.devise-user
   .text-left
     %h1
@@ -12,7 +10,7 @@
         &nbsp;&nbsp;
         ou
         &nbsp;
-        = link_to "Retour", patients_path, class: "back"
+        = link_to "Retour", dashboard_index_path, class: "back"
         %br
         %br
         = f.input :email, required: true, label: "Email :"
@@ -21,5 +19,3 @@
             Currently waiting confirmation for: #{resource.unconfirmed_email}
         = f.input :password, autocomplete: "off", label: "Nouveau mots de passe :", hint: "( Laisser vide si vous ne voulez pas changer )", required: false
         = f.input :current_password, label: "Mots de passe actuel :", hint: "( Nous avons besoin de votre mot de passe actuel pour confirmer vos modifications )", required: true
-        = f.input :firstname, label: "Prénom :"
-        = f.input :lastname, label: "Nom :"

@@ -1,14 +1,3 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %a.navbar-brand{:href => "/"}
-        %i.fas.fa-ad.fa-2x
-    / Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right
-        %li
-
 .container.admin
   = simple_form_for @user, url: admin_users_path , method: :post do |f|
     .text-left

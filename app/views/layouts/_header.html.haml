@@ -1,31 +1,37 @@
 - if user_signed_in?
-  %nav.navbar.navbar-fixed-top{:role => "navigation"}
-    .container-fluid
-      / Brand and toggle get grouped for better mobile display
-      .navbar-header
-        %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-          %span.fa.fa-bars
-        = link_to('/dashboard', title: "Actu", class: "navbar-brand") do
-          %i.fas.fa-ad.fa-2x
-      / Collect the nav links, forms, and other content for toggling
-      #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        .text-center
-          %ul.nav.navbar-nav.navbar-left
-            %li.nav-item.active
-              = link_to 'Actu', dashboard_index_path, title: "Actu", :class => current_page?(dashboard_index_path) && 'active'
-            %li.nav-item
-              = link_to 'Conf', conf_dashboard_index_path, title: "Conf", :class => current_page?(conf_dashboard_index_path) && 'active'
-          %span.navbar-text
-            %h4
-              = current_user.email
-              %span.caret
+  %nav.navbar.navbar-expand-md.navbar-light.bg-light
+    = link_to('/dashboard', title: "Actu", class: "navbar-brand") do
+      %i.fas.fa-ad.fa-2x
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li.nav-item{:class => current_page?(dashboard_index_path) && 'active'}
+          = link_to 'Actu', dashboard_index_path, title: "Actu", class: "nav-link"
+        %li.nav-item{ :class => current_page?(conf_dashboard_index_path) && 'active'}
+          = link_to 'Conf', conf_dashboard_index_path, title: "Conf", class: "nav-link"
+      %span.navbar-text
+        %a.dropdown-toggle{class: "dropdown-header", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %h4
+            = current_user.email
+        %ul.dropdown-menu
+          %li
+            = link_to "Mes informations", edit_user_registration_path
+          %li.divider{:role => "separator"}
+          %li
+            = link_to "Déconnexion", destroy_user_session_path, method: :delete
 
 - else
-  %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  %a.navbar-brand{:href => "/dashboard"}
-    %i.fas.fa-ad.fa-2x
-  %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
+  %nav.navbar.navbar-expand-md.navbar-light.bg-light
+    = link_to('/', title: "home", class: "navbar-brand") do
+      %i.fas.fa-ad.fa-2x
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li.nav-item{:class => current_page?(admin_users_path) && 'active'}
+          = link_to 'Admin', admin_users_path, title: "Admin", class: "nav-link"
+
 
 :javascript
   $(document).ready(function(){

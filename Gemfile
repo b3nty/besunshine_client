@@ -35,6 +35,8 @@ gem "devise"
 # gem "carrierwave"
 # gem "fog"
 
+gem 'zoom_rb'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -11,4 +11,14 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/header'
+    .text-center
+      - if flash[:alert]
+        .alert.alert-danger{:role => "alert"}
+          = flash[:alert]
+      - if flash[:notice]
+        .alert.alert-info{:role => "alert"}
+          = flash[:notice]
+      - if flash[:success]
+        .alert.alert-success{:role => "alert"}
+          = flash[:success]
     = yield

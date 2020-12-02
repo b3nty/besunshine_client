@@ -1,3 +1,30 @@
 .container
   .text-left
     %h1 Conf
+
+.container
+  %button.btn.btn-success#meeting_create Créer une Réunion
+  %br
+  %br
+  .infinite-table.text-left
+    %table.table.table-striped
+      %tr
+        %td Id
+        %td Heure de Début
+        %td Temps écoulé
+        %td Rejoindre
+        %td Supprimer
+
+      - @meeting_list['meetings'].each do |meeting|
+        %tr.send_mail_1
+          %td
+            = meeting['id']
+          %td
+            = meeting['start_time'].to_datetime.strftime("%d/%m/%Y %Hh%Mmin%Ss")
+          %td
+            = meeting['duration']
+          %td
+            = link_to("#{meeting['join_url']}", title: "Zoom", target: "_blank", class: "navbar-brand") do
+              %button.btn.btn-primary Rejoindre
+          %td
+            %button.btn.btn-danger#meeting_delete{"data-id" => "#{meeting['id']}"} Supprimer

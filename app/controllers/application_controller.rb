@@ -9,13 +9,15 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
-      redirect_to root_path, notice: "Pour accéder à cette page vous devez être connecté"
+      flash[:notice] = "Pour accéder à cette page vous devez être connecté"
+      redirect_to root_path
     end
   end
 
   def check
     if current_user.activated == false
-      redirect_to root_path, alert: "votre compte a été suspendu, contactez notre service pour avoir plus de détail"
+      flash[:alert] = "votre compte a été suspendu, contactez notre service pour avoir plus de détail"
+      redirect_to root_path
     end
   end
 end

@@ -1,13 +1,7 @@
 .container
   .text-center
     %h1 Besunshine Client
-  .text-center
-    - if flash[:alert]
-      .alert.alert-danger{:role => "alert"}
-        = flash[:alert]
-    - if flash[:notice]
-      .alert.alert-info{:role => "alert"}
-        = flash[:notice]
+
   .box
     .box-header.text-center
       %h3 Se connecter

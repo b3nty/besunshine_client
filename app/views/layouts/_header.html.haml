@@ -11,7 +11,7 @@
         %li.nav-item{ :class => current_page?(conf_dashboard_index_path) && 'active'}
           = link_to 'Conf', conf_dashboard_index_path, title: "Conf", class: "nav-link"
       %span.navbar-text
-        %a.dropdown-toggle{class: "dropdown-header", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        %a{class: "dropdown-header", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %h4
             = current_user.email
         %ul.dropdown-menu

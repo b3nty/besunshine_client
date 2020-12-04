@@ -3,7 +3,8 @@
     %h1 Conf
 
 .container
-  %button.btn.btn-success#meeting_create Créer une Réunion
+  = link_to(meeting_create_dashboard_index_path, title: "Zoom", class: "navbar-brand") do
+    %button.btn.btn-success Créer une Réunion
   %br
   %br
   .infinite-table.text-left
@@ -11,12 +12,12 @@
       %tr
         %td Id
         %td Heure de Début
-        %td Temps écoulé
+        %td Durée de la Réunion
         %td Rejoindre
         %td Supprimer
 
       - @meeting_list['meetings'].each do |meeting|
-        %tr.send_mail_1
+        %tr
           %td
             = meeting['id']
           %td
@@ -27,4 +28,10 @@
             = link_to("#{meeting['join_url']}", title: "Zoom", target: "_blank", class: "navbar-brand") do
               %button.btn.btn-primary Rejoindre
           %td
-            %button.btn.btn-danger#meeting_delete{"data-id" => "#{meeting['id']}"} Supprimer
+            = link_to(meeting_delete_dashboard_path(meeting['id']), title: "Delete Zoom", class: "navbar-brand") do
+              %button.btn.btn-danger Supprimer
+      - end.empty? and begin
+        %tr
+          %td{colspan: "5"}
+            .text-center
+              Veuillez créer une réunion pour affichez les réunions en cours

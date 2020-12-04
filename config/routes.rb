@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :dashboard do
     collection do
       get :conf
-      get :meeting_create
+      post :meeting_create
+    end
+    member do
       get :meeting_delete
     end
   end

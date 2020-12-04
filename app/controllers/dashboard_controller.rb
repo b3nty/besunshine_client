@@ -8,9 +8,13 @@ class DashboardController < ApplicationController
     @zoom_client = Zoom.new
     @user_id = @zoom_client.user_list['users'][0]['id']
     @meeting_list = @zoom_client.meeting_list(user_id: @user_id)
+    puts @meeting_list
   end
 
   def meeting_create
+  end
+
+  def show
     @zoom_client = Zoom.new
     @user_id = @zoom_client.user_list['users'][0]['id']
 
@@ -19,27 +23,23 @@ class DashboardController < ApplicationController
       begin
         flash[:success] = 'Votre réunion Zoom a bien été créée'
         format.html { redirect_to conf_dashboard_index_path }
-        format.js { head :no_content }
       rescue Zoom::Error => exception
         flash[:alert] = 'Une erreur est survenue, veillez contactez l\'administrateur'
         format.html { redirect_to conf_dashboard_index_path }
-        format.js { head :no_content }
       end
     end
   end
 
   def meeting_delete
     @zoom_client = Zoom.new
-    @zoom_client.meeting_delete(meeting_id: params[:value])
+    @zoom_client.meeting_delete(meeting_id: params[:id])
     respond_to do |format|
       begin
-        flash[:success] = 'Votre réunion Zoom a bien été créée'
+        flash[:info] = 'Votre réunion Zoom a bien été supprimée'
         format.html { redirect_to conf_dashboard_index_path }
-        format.js { head :no_content }
       rescue Zoom::Error => exception
         flash[:alert] = 'Une erreur est survenue, veillez contactez l\'administrateur'
         format.html { redirect_to conf_dashboard_index_path }
-        format.js { head :no_content }
       end
     end
   end
